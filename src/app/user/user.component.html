@@ -1,6 +1,9 @@
 <div class="div">
     <button>
-        <img src="" alt="Image of user"/>
-        <span>NAME</span>
+        <img [src]="'/assets/users/' + selectedUser.avatar"
+        [alt]="'Image of ' + selectedUser.name"
+       
+        /> <!-- Remember! Angular doesn't require the src specification-->
+        <span>{{selectedUser.name }}</span>
     </button>
 </div>
