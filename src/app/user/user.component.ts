@@ -1,25 +1,37 @@
-import { Component, computed, EventEmitter, Input, input, Output} from '@angular/core';
+import {
+  Component,
+  computed,
+  EventEmitter,
+  Input,
+  input,
+  Output,
+} from '@angular/core';
 
-import { dummyUsers } from './dummyUsers';
+// type User = {
+//   id: string
+//   name: string
+//   avatar: string
+// }
 
-
-
+interface User {
+  id: string;
+  name: string;
+  avatar: string;
+}
 
 @Component({
   selector: 'app-user',
   imports: [],
   templateUrl: './user.component.html',
-  styleUrl: './user.component.css'
+  styleUrl: './user.component.css',
 })
 export class UserComponent {
+  // Decorator method
+  @Input({ required: true }) user!: User;
 
-// Decorator method
-  @Input({required: true}) id!:string
-  @Input({required: true}) avatar!:string
-  @Input({required: true}) name!:string
-  @Output() select = new EventEmitter<string>()
+  @Output() select = new EventEmitter<string>();
 
-// Signal Approach
+  // Signal Approach
   // avatar = input.required<string>()
   // name = input.required<string>()
   // select = output<string>()
@@ -27,13 +39,12 @@ export class UserComponent {
   // imagePath = computed(() => {
   //   return 'assets/users/' + this.avatar
   // })
-  
-  public get imagePath() : string {
-    return 'assets/users/' + this.avatar
-  }
-  
-  onSelectUser() {
-    this.select.emit(this.id)
+
+  public get imagePath(): string {
+    return 'assets/users/' + this.user.avatar;
   }
 
+  onSelectUser() {
+    this.select.emit(this.user.id);
+  }
 }

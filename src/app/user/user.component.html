@@ -2,9 +2,9 @@
   <button (click)="onSelectUser()" >
     <img
       [src]="imagePath"
-      [alt]="'Image of ' + name"
+      [alt]="'Image of ' + user.name"
     />
     <!-- Remember! Angular doesn't require the src specification-->
-    <span>{{ name }}</span>
+    <span>{{ user.name }}</span>
   </button>
 </div>
