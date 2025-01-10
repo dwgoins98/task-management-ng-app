@@ -13,7 +13,7 @@ import { TasksComponent } from './tasks/tasks.component';
 export class AppComponent {
   title = 'first-angular-app';
   users = dummyUsers
-  selectedUserId = 'u1'
+  selectedUserId? : string
 
   
   public get selectedUser() {
