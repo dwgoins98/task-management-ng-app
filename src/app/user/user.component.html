@@ -1,4 +1,4 @@
-<div class="div">
+<app-card>
   <button [class.active]="selected" (click)="onSelectUser()" >
     <img
       [src]="imagePath"
@@ -7,4 +7,4 @@
     <!-- Remember! Angular doesn't require the src specification-->
     <span>{{ user.name }}</span>
   </button>
-</div>
+</app-card>

@@ -1,43 +1,50 @@
-import { Component, EventEmitter, Output, signal } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  inject,
+  Input,
+  Output,
+  signal,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { type NewTaskData} from '../task/task.model';
-
+import { type NewTaskData } from '../task/task.model';
+import { TasksService } from '../tasks.service';
 
 @Component({
   selector: 'app-new-task',
   imports: [FormsModule],
   templateUrl: './new-task.component.html',
-  styleUrl: './new-task.component.css'
+  styleUrl: './new-task.component.css',
 })
 export class NewTaskComponent {
+  @Input({ required: true }) userId!: string;
+  @Output() close = new EventEmitter<void>();
 
-  @Output() cancel = new EventEmitter<void>()
-  @Output() add = new EventEmitter<NewTaskData>()
+  private tasksService = inject(TasksService);
 
-  exampleTaskId = 4
+  // Not Signal Method
+  newTitle: string = '';
+  newSummary: string = '';
+  newDueDate: string = '';
 
-// Not Signal Method
-  newTitle: string = ""
-  newSummary: string = ""
-  newDueDate: string = ""
-
-// Signal method
+  // Signal method
   // newTitle = signal('')
   // newSummary = signal('')
   // newDueDate = signal('')
 
-  onCancel(){
-    this.cancel.emit()
+  onCancel() {
+    this.close.emit();
   }
 
-  onSubmit(){
-    
-    this.add.emit({
-      title: this.newTitle,
-      summary: this.newSummary,
-      dueDate: this.newDueDate
-    })
-
+  onSubmit() {
+    this.tasksService.addTask(
+      {
+        title: this.newTitle,
+        summary: this.newSummary,
+        dueDate: this.newDueDate,
+      },
+      this.userId
+    );
+    this.close.emit();
   }
-
 }
