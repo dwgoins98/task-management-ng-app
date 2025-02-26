@@ -1,5 +1,5 @@
 import { Component, input, Input } from '@angular/core';
-import { TasksService } from "./tasks.service";
+import { TasksService } from './tasks.service';
 import { NewTaskComponent } from './new-task/new-task.component';
 import { TaskComponent } from './task/task.component';
 
@@ -21,7 +21,7 @@ export class TasksComponent {
   constructor(private tasksService: TasksService) {}
 
   public get selectedUserTasks() {
-    return this.tasksService.getUserTasks(this.id())
+    return this.tasksService.getUserTasks(this.id());
   }
 
   onStartAddTask() {
@@ -31,5 +31,4 @@ export class TasksComponent {
   onCloseAddTask() {
     this.isAddingTask = false;
   }
-
 }
