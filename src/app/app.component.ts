@@ -3,6 +3,7 @@ import { dummyUsers } from './user/dummyUsers';
 import { HeaderComponent } from './header/header.component';
 import { UserComponent } from './user/user.component';
 import { TasksComponent } from './tasks/tasks.component';
+import { User } from './user/user.model';
 
 @Component({
   selector: 'app-root',
@@ -16,11 +17,16 @@ export class AppComponent {
   users = dummyUsers;
   selectedUserId?: string;
 
-  public get selectedUser() {
-    return this.users.find((user) => user.id === this.selectedUserId)!;
+  public get selectedUser(): User {
+    const returnedUser = this.users.find(
+      (user) => user.id === this.selectedUserId
+    )!;
+
+    return returnedUser;
   }
 
-  onSelectUser(id: string) {
-    this.selectedUserId = id;
+  onSelectUser(id: string): string {
+    return this.selectedUserId = id;
+    // console.log('App Component: ' + this.selectedUser.id)
   }
 }
