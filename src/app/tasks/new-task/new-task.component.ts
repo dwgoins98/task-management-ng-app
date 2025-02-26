@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { TasksService } from '../tasks.service';
 import { FormsModule } from '@angular/forms';
+import { CanDeactivateFn } from '@angular/router';
 
 @Component({
   selector: 'app-new-task',
@@ -25,6 +26,7 @@ export class NewTaskComponent {
   userId = input.required<string>();
 
   private tasksService = inject(TasksService);
+  submitted: boolean = false;
 
   // Decorator method
   // newTitle: string = '';
@@ -52,3 +54,21 @@ export class NewTaskComponent {
     this.close.emit();
   }
 }
+
+export const canLeaveEditPage: CanDeactivateFn<NewTaskComponent> = (
+  component
+) => {
+  if (component.submitted) {
+    return true;
+  }
+  if (
+    component.newDueDate() ||
+    component.newSummary() ||
+    component.newTitle()
+  ) {
+    return window.confirm(
+      'Are you sure you want to leave this page? The info entered will be lost.'
+    );
+  }
+  return true;
+};

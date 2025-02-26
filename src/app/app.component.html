@@ -1,11 +1,11 @@
 <app-header />
 
 <main>
-  <ul id="users">
+  <!-- <ul id="users"> -->
     <!-- @for, @if, and @else are only available in Angular 17 and higher
      Use ngFor and ngIf, importing it in the componant class's import array, in older versions-->
 
-    @for (user of users; track user.id) {
+    <!-- @for (user of users; track user.id) {
     <li>
       <app-user
         [user]="user"
@@ -16,13 +16,17 @@
       />
     </li>
     }
-  </ul>
+  </ul> -->
 
-  @if (selectedUser) {
+  <p>
+    <router-outlet />
+  </p>
+
+  <!-- @if (selectedUser) {
   <app-tasks [id]="selectedUser.id" [name]="selectedUser.name" />
   } @else {
   <p>
     <router-outlet />
   </p>
-  }
+  } -->
 </main>

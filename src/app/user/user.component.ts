@@ -10,11 +10,12 @@ import {
 
 import { type User } from './user.model';
 import { CardComponent } from '../ui/card/card.component';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [CardComponent],
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './user.component.html',
   styleUrl: './user.component.css',
 })
@@ -29,7 +30,7 @@ export class UserComponent {
   name = input.required<string>();
   select = output<string>();
   user = input.required<User>();
-  selected = input.required<boolean>();
+  selected = input<boolean>();
 
   imagePath = computed(() => {
     return 'assets/users/' + this.avatar();

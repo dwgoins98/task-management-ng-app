@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { NewTaskData } from './task/task.model';
 
 @Injectable({ providedIn: 'root' })
 export class TasksService {
-  private tasks = [
+  private tasks = signal([
     {
       id: 't1',
       userId: 'u1',
@@ -27,7 +27,9 @@ export class TasksService {
         'Prepare and describe an issue template which will help with project management',
       dueDate: '2024-06-15',
     },
-  ];
+  ]);
+
+  allTasks = this.tasks.asReadonly();
 
   constructor() {
     const tasks = localStorage.getItem('tasks');
@@ -37,24 +39,29 @@ export class TasksService {
     }
   }
 
-  getUserTasks(userId: string) {
-    return this.tasks.filter((task) => task.userId === userId);
-  }
+  // getUserTasks(userId: string) {
+  //   return this.tasks.filter((task) => task.userId === userId);
+  // }
 
   addTask(taskData: NewTaskData, userId: string) {
-    this.tasks.unshift({
-      // Add task to beginning of array
-      id: new Date().getTime().toString(), // For simplicity's sake
-      userId: userId,
-      title: taskData.title,
-      summary: taskData.summary,
-      dueDate: taskData.dueDate,
-    });
+    this.tasks.update((prevTasks) => [
+      {
+        // Add task to beginning of array
+        id: new Date().getTime().toString(), // For simplicity's sake
+        userId: userId,
+        title: taskData.title,
+        summary: taskData.summary,
+        dueDate: taskData.dueDate,
+      },
+      ...prevTasks,
+    ]);
     this.saveTasks();
   }
 
   removeTask(id: string) {
-    this.tasks = this.tasks.filter((task) => task.id !== id);
+    this.tasks.update((prevTasks) =>
+      prevTasks.filter((task) => task.id !== id)
+    );
     this.saveTasks();
   }
 

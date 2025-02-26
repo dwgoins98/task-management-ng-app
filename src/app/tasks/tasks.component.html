@@ -1,6 +1,6 @@
-@if (isAddingTask) {
+<!-- @if (isAddingTask) {
 <app-new-task [userId]="id()" (close)="onCloseAddTask()" />
-}
+} -->
 
 <section id="tasks">
   <header>
@@ -11,7 +11,7 @@
   </header>
 
   <ul>
-    @for (task of selectedUserTasks; track task.id) {
+    @for (task of userTasks(); track task.id) {
     <li>
       <app-task [task]="task" />
     </li>
