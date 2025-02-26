@@ -7,10 +7,12 @@ import {
   signal,
 } from '@angular/core';
 import { TasksService } from '../tasks.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-new-task',
-  standalone: false,
+  standalone: true,
+  imports: [FormsModule],
   templateUrl: './new-task.component.html',
   styleUrl: './new-task.component.css',
 })
