@@ -18,6 +18,7 @@ a {
   width: 100%;
   min-width: 10rem;
   text-align: left;
+  text-decoration: none;
 }
 
 a:hover,

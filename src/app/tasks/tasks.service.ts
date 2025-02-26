@@ -35,7 +35,7 @@ export class TasksService {
     const tasks = localStorage.getItem('tasks');
 
     if (tasks) {
-      this.tasks = JSON.parse(tasks);
+      this.tasks.set(JSON.parse(tasks));
     }
   }
 
@@ -44,17 +44,14 @@ export class TasksService {
   // }
 
   addTask(taskData: NewTaskData, userId: string) {
-    this.tasks.update((prevTasks) => [
-      {
-        // Add task to beginning of array
-        id: new Date().getTime().toString(), // For simplicity's sake
-        userId: userId,
-        title: taskData.title,
-        summary: taskData.summary,
-        dueDate: taskData.dueDate,
-      },
-      ...prevTasks,
-    ]);
+    const newTask = {
+      id: new Date().getTime().toString(),
+      userId: userId,
+      title: taskData.title,
+      summary: taskData.summary,
+      dueDate: taskData.dueDate,
+    };
+    this.tasks.set([newTask, ...this.tasks()]);
     this.saveTasks();
   }
 

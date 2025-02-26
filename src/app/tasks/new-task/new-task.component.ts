@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { TasksService } from '../tasks.service';
 import { FormsModule } from '@angular/forms';
-import { CanDeactivateFn, RouterLink } from '@angular/router';
+import { CanDeactivateFn, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-new-task',
@@ -21,11 +21,12 @@ import { CanDeactivateFn, RouterLink } from '@angular/router';
 })
 export class NewTaskComponent {
   // @Input({ required: true }) userId!: string;
-  @Output() close = new EventEmitter<void>();
+  // @Output() close = new EventEmitter<void>();
 
   userId = input.required<string>();
 
   private tasksService = inject(TasksService);
+  private router = inject(Router);
   submitted: boolean = false;
 
   // Decorator method
@@ -38,11 +39,12 @@ export class NewTaskComponent {
   newSummary = signal('');
   newDueDate = signal('');
 
-  onCancel() {
-    this.close.emit();
-  }
+  // onCancel() {
+  //   this.close.emit();
+  // }
 
   onSubmit() {
+    console.log('Running onSubmit()')
     this.tasksService.addTask(
       {
         title: this.newTitle(),
@@ -51,7 +53,10 @@ export class NewTaskComponent {
       },
       this.userId()
     );
-    this.close.emit();
+    this.submitted = true
+    this.router.navigate(['/users', this.userId(), 'tasks'], {
+      replaceUrl: true
+    })
   }
 }
 
