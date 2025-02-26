@@ -3,16 +3,16 @@ import { dummyUsers } from './user/dummyUsers';
 import { HeaderComponent } from './header/header.component';
 import { User } from './user/user.model';
 import { RouterOutlet } from '@angular/router';
+import { UsersComponent } from "./user/users.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HeaderComponent, RouterOutlet],
+  imports: [HeaderComponent, RouterOutlet, UsersComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  title = 'first-angular-app';
   users = dummyUsers;
   selectedUserId?: string;
 

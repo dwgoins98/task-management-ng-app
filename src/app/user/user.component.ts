@@ -26,14 +26,11 @@ export class UserComponent {
   // @Output() select = new EventEmitter<string>();
 
   // Signal Approach
-  avatar = input.required<string>();
-  name = input.required<string>();
-  select = output<string>();
   user = input.required<User>();
-  selected = input<boolean>();
+  select = output<string>()
 
   imagePath = computed(() => {
-    return 'assets/users/' + this.avatar();
+    return 'assets/users/' + this.user().avatar;
   });
 
   // public get imagePath(): string {

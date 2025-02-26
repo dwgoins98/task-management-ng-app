@@ -1,4 +1,3 @@
-/*** Copied from Udemy Course */
 main {
   width: 90%;
   max-width: 50rem;
@@ -8,34 +7,9 @@ main {
   gap: 2rem;
 }
 
-#users {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  gap: 0.5rem;
-  overflow: auto;
-}
-
-#fallback {
-  font-weight: bold;
-  font-size: 1.15rem;
-  margin: 0;
-  text-align: center;
-}
-
 @media (min-width: 768px) {
   main {
     margin: 4rem auto;
     grid-template-columns: 1fr 3fr;
-  }
-
-  #users {
-    flex-direction: column;
-  }
-
-  #fallback {
-    font-size: 1.5rem;
-    text-align: left;
   }
 }

@@ -9,15 +9,15 @@ export const userRoutes: Routes = [
   {
     path: '',
     redirectTo: 'tasks',
-    pathMatch: 'prefix'
+    pathMatch: 'prefix',
   },
   {
     path: 'tasks',
     component: TasksComponent,
     runGuardsAndResolvers: 'always',
     resolve: {
-      userTasks: resolveUserTasks
-    }
+      userTasks: resolveUserTasks,
+    },
   },
   {
     path: 'tasks/new',
