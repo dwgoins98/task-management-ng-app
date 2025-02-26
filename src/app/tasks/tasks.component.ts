@@ -2,12 +2,12 @@ import { Component, inject, input, Input } from '@angular/core';
 import { TasksService } from './tasks.service';
 import { TaskComponent } from './task/task.component';
 import { Task } from './task/task.model';
-import { ResolveFn } from '@angular/router';
+import { ResolveFn, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-tasks',
   standalone: true,
-  imports: [TaskComponent],
+  imports: [TaskComponent, RouterLink],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css',
 })
@@ -19,6 +19,7 @@ export class TasksComponent {
   name = input.required<string>();
   userId = input.required<string>();
   userTasks = input.required<Task[]>();
+  order = input<'asc' | 'desc'>()
 
   constructor(private tasksService: TasksService) {}
 

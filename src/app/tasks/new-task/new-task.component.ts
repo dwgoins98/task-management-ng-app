@@ -10,12 +10,12 @@ import {
 } from '@angular/core';
 import { TasksService } from '../tasks.service';
 import { FormsModule } from '@angular/forms';
-import { CanDeactivateFn } from '@angular/router';
+import { CanDeactivateFn, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-new-task',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './new-task.component.html',
   styleUrl: './new-task.component.css',
 })

@@ -3,12 +3,11 @@
 } -->
 
 <section id="tasks">
-  <header>
-    <h2>{{ name() }}'s tasks</h2>
-    <menu>
-      <button (click)="onStartAddTask()">Add task</button>
-    </menu>
-  </header>
+  <p>
+    <a routerLink="./" [queryParams]="{order: order() === 'asc' ? 'desc' : 'asc'}">
+      Sort {{ order() === 'asc' ? 'Descending' : 'Ascending'}}
+    </a>
+  </p>
 
   <ul>
     @for (task of userTasks(); track task.id) {
