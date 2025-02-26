@@ -14,7 +14,7 @@ import { DatePipe } from '@angular/common';
 })
 export class TaskComponent {
   // @Input({ required: true }) task!: Task;
-  task = input.required<Task>()
+  task = input.required<Task>();
 
   private tasksService = inject(TasksService);
 

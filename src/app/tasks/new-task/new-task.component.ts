@@ -22,22 +22,22 @@ export class NewTaskComponent {
   // @Input({ required: true }) userId!: string;
   @Output() close = new EventEmitter<void>();
 
-userId = input.required<string>()
+  userId = input.required<string>();
 
   private tasksService = inject(TasksService);
 
-  // Not Signal Method
+  // Decorator method
   // newTitle: string = '';
   // newSummary: string = '';
   // newDueDate: string = '';
 
   // Signal method
-  newTitle = signal('')
-  newSummary = signal('')
-  newDueDate = signal('')
+  newTitle = signal('');
+  newSummary = signal('');
+  newDueDate = signal('');
 
   onCancel() {
-    this.close.emit()
+    this.close.emit();
   }
 
   onSubmit() {
