@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, input, Input } from '@angular/core';
 
 import { type Task } from './task.model';
 import { TasksService } from '../tasks.service';
@@ -13,11 +13,12 @@ import { DatePipe } from '@angular/common';
   styleUrl: './task.component.css',
 })
 export class TaskComponent {
-  @Input({ required: true }) task!: Task;
+  // @Input({ required: true }) task!: Task;
+  task = input.required<Task>()
 
   private tasksService = inject(TasksService);
 
   onCompleteTask() {
-    this.tasksService.removeTask(this.task.id);
+    this.tasksService.removeTask(this.task().id);
   }
 }
