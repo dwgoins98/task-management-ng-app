@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input, Input } from '@angular/core';
 import { TasksService } from "./tasks.service";
 import { NewTaskComponent } from './new-task/new-task.component';
 import { TaskComponent } from './task/task.component';
@@ -11,14 +11,17 @@ import { TaskComponent } from './task/task.component';
   styleUrl: './tasks.component.css',
 })
 export class TasksComponent {
-  @Input({ required: true }) name!: string;
-  @Input({ required: true }) id!: string;
+  // @Input({ required: true }) name!: string;
+  // @Input({ required: true }) id!: string;
   isAddingTask: boolean = false;
+
+  name = input.required<string>();
+  id = input.required<string>();
 
   constructor(private tasksService: TasksService) {}
 
   public get selectedUserTasks() {
-    return this.tasksService.getUserTasks(this.id)
+    return this.tasksService.getUserTasks(this.id())
   }
 
   onStartAddTask() {
